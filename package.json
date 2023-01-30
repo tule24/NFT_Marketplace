@@ -1,0 +1,26 @@
+{
+  "name": "nft_marketplace",
+  "version": "1.0.0",
+  "description": "NFT Marketplace",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tule24/NFT_Marketplace.git"
+  },
+  "author": "congtu.le",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tule24/NFT_Marketplace/issues"
+  },
+  "homepage": "https://github.com/tule24/NFT_Marketplace#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.1",
+    "hardhat": "^2.12.6"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.1"
+  }
+}
