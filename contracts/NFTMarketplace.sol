@@ -18,6 +18,7 @@ contract NFTMarketplace is ERC721URIStorage, Ownable {
     
     mapping(string => bool) private _usedTokenURI;
     mapping(uint256 => NftItem) private _idToNftItem;
+    mapping(address => uint256) private _userNFTCount;
     struct NftItem {
         uint256 tokenId;
         address owner;
@@ -65,6 +66,10 @@ contract NFTMarketplace is ERC721URIStorage, Ownable {
         _safeMint(msg.sender, newTokenId);
         _setTokenURI(newTokenId, tokenURI);
         _usedTokenURI[tokenURI] = true;
+
+        uint256 count = _userNFTCount[msg.sender];
+        count += 1;
+        _userNFTCount[msg.sender] = count;
 
         createNftItem(newTokenId);
         return newTokenId;
@@ -123,6 +128,14 @@ contract NFTMarketplace is ERC721URIStorage, Ownable {
 
         _transfer(address(this), msg.sender, tokenId);
         payable(nftItem.seller).transfer(msg.value); // payout NFT price for seller
+
+        uint256 sellerCount = _userNFTCount[nftItem.seller];
+        sellerCount -= 1;
+        _userNFTCount[nftItem.seller] = sellerCount;
+
+        uint256 buyerCount = _userNFTCount[msg.sender];
+        buyerCount += 1;
+        _userNFTCount[msg.sender] = buyerCount;
         
         emit NftItemSold(tokenId, nftItem.seller, msg.sender, nftItem.price);
 
@@ -155,15 +168,15 @@ contract NFTMarketplace is ERC721URIStorage, Ownable {
         }
         return items;
     }
-    // GET_MY_NFT: get all NFT owned by msg.sender (not listing)
-    function getMyNFT() public view returns(NftItem[] memory) {
+    // GET_USER_NFT: get all NFT of user
+    function getUserNFT(address userAddress) public view returns(NftItem[] memory) {
         uint256 totalCount = _tokenIds.current();
-        uint256 totalUserItem = balanceOf(msg.sender);
+        uint256 totalNFTUser = _userNFTCount[userAddress];
         uint256 currentIndex = 0;
 
-        NftItem[] memory items = new NftItem[](totalUserItem);
+        NftItem[] memory items = new NftItem[](totalNFTUser);
         for (uint256 i = 1; i <= totalCount; i++) {
-            if(_idToNftItem[i].owner == msg.sender) {
+            if(_idToNftItem[i].owner == userAddress || _idToNftItem[i].seller == userAddress) {
                 items[currentIndex] = _idToNftItem[i];
                 currentIndex += 1;
             }

@@ -175,8 +175,10 @@ describe("NFT Marketplace", () => {
       expect(nftArr.length).to.equal(6)
     })
     it("Check My NFT", async () => {
-      const nftArr = await nftMarketplace.connect(signers[2]).getMyNFT()
-      expect(nftArr.length).to.equal(1)
+      const nftArr0 = await nftMarketplace.getUserNFT(signers[0].address)
+      const nftArr2 = await nftMarketplace.getUserNFT(signers[2].address)
+      expect(nftArr2.length).to.equal(1)
+      console.log(nftArr0)
     })
   })
 
