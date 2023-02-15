@@ -8,8 +8,8 @@ The NFT marketplace lets you mint, list, and trade NFTs
 Try running some of the following command to install, run and test contract:
 
 ```shell
-yarn install => install all dependencies of project
-npx hardhat test => testing smart contract
-npx hardhat node => run local node
-npx hardhat run --NETWORK-DEPLOY scripts/deploy.js => deploy contract to network (in my hardhat.config.js is GOERLI_TESTNET) 
+yarn install      --> to install all dependencies of project
+npx hardhat test  --> testing smart contract
+npx hardhat node  --> run local node
+npx hardhat run --NETWORK-DEPLOY scripts/deploy.js --> deploy contract to network (in my hardhat.config.js is GOERLI_TESTNET) 
 ```
