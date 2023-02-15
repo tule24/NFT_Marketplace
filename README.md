@@ -1,13 +1,15 @@
-# Sample Hardhat Project
+# NFT Marketplace Contract
+The NFT marketplace lets you mint, list, and trade NFTs
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+## Technology
+![image]({https://img.shields.io/badge/Solidity-e6e6e6?style=for-the-badge&logo=solidity&logoColor=black}) ![image]({https://img.shields.io/badge/OpenZeppelin-4E5EE4?logo=OpenZeppelin&logoColor=fff&style=for-the-badge}) ![image]({https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E}) 
 
-Try running some of the following tasks:
+## Installation and run
+Try running some of the following command to install, run and test contract:
 
 ```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.js
+yarn install => install all dependencies of project
+npx hardhat test => testing smart contract
+npx hardhat node => run local node
+npx hardhat run --NETWORK-DEPLOY scripts/deploy.js => deploy contract to network (in my hardhat.config.js is GOERLI_TESTNET) 
 ```
